@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+	<title>ComicFeed</title>
+	<link>http://comicfeed.appspot.com/show</link>
+	<description>RSS com figuras do tirinhas</description>
+	<pubDate>{% now "r" %}</pubDate>
+	<generator>ComicFeed on Google App Engine</generator>
+	<language>en</language>
+	{% for item in items %}
+	<item>
+		<title>{{ item.title|escape }}</title>
+
+		<link>{{ item.link|escape }}</link>
+		<pubDate>{{ item.date|date:"r"|escape }}</pubDate>
+		<category>Explosm</category>
+		<guid>{{ item.url|escape }}</guid>
+		<description>
+		<![CDATA[
+			<img src="http://comicfeed.appspot.com/enclosure?id={{ item.key.id }}" />
+		]]>
+		</description>
+		<enclosure url="http://comicfeed.appspot.com/enclosure?id={{ item.key.id }}" type="image/png" />
+	</item>
+	{% endfor %}
+	</channel>
+</rss>
