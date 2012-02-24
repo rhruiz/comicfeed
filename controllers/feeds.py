@@ -95,8 +95,8 @@ class FetchFeed(webapp.RequestHandler):
 				logging.error("Failed to load feed %s" % feed.name)
 				self.error(500)
 				
-			linkre = re.compile("http://www.explosm.net/comics/\d+/?")
-			comicre = re.compile('(http://www.explosm.net/db/files/Comics/[A-z0-9_\-\+]+/[A-z0-9\-_\+]+\.(gif|png))')
+			linkre = re.compile("http://(?:www\.)?explosm.net/comics/\d+/?")
+			comicre = re.compile('(http://(?:www\.)?explosm.net/db/files/Comics/[A-z0-9_\-\+]+/[A-z0-9\-_\+]+\.(gif|png))')
 	
 			logging.debug("Got %d entries" % len(parsed_feed.entries))
 			for e in parsed_feed.entries:
